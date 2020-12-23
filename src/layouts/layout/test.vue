@@ -1,11 +1,11 @@
 <template>
-  <div class="layout index">
+  <div class="layout test">
     <div class="layout-left">
       <router-list />
     </div>
     <div class="layout-right">
       <h4>
-        【大屏端】这里是公用的头部
+        【测试页面】这里是公用部分
       </h4>
       <main class="layout-box">
         <router-view />
@@ -16,13 +16,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import RouterList from '@/frameSkeleton/layout/components/routerList.vue'
+import RouterList from '@/layouts/layout/components/routerList.vue'
 
-  @Component<Index>({
-    name: 'Index',
+  @Component<Test>({
+    name: 'Test',
     components: { RouterList }
   })
-export default class Index extends Vue {
+export default class Test extends Vue {
 
 }
 </script>
@@ -46,8 +46,8 @@ export default class Index extends Vue {
       h4 {
         font-size: 20px;
         line-height: 60px;
-        color: aqua;
-        border-bottom: 1px solid aqua;
+        color: #ff6700;
+        border-bottom: 1px solid #ff6700;
       }
     }
   }

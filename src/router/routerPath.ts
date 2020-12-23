@@ -1,8 +1,8 @@
 import { RouteConfig } from 'vue-router'
 
-import Index from '@/frameSkeleton/layout/index.vue'
-import Home from '@/frameSkeleton/layout/home.vue'
-import Child from '@/frameSkeleton/layout/child.vue'
+import Index from '@/layouts/layout/index.vue'
+import Home from '@/layouts/layout/home.vue'
+import Child from '@/layouts/layout/child.vue'
 
 // 基础页面路由
 export const baseRoutes: RouteConfig[] = [
@@ -19,28 +19,28 @@ export const baseRoutes: RouteConfig[] = [
     meta: {
       title: '登录页'
     },
-    component: () => import('@/frameSkeleton/login/index.vue')
+    component: () => import('@/layouts/login/index.vue')
   }, {
     path: '/401',
     name: '401',
     meta: {
       title: 'error401'
     },
-    component: () => import('@/frameSkeleton/error/error401.vue')
+    component: () => import('@/layouts/error/error401.vue')
   }, {
     path: '/403',
     name: '403',
     meta: {
       title: 'error403'
     },
-    component: () => import('@/frameSkeleton/error/error403.vue')
+    component: () => import('@/layouts/error/error403.vue')
   }, {
     path: '*',
     name: '404',
     meta: {
       title: 'error404'
     },
-    component: () => import('@/frameSkeleton/error/error404.vue')
+    component: () => import('@/layouts/error/error404.vue')
   }
 ]
 

@@ -1,11 +1,11 @@
 <template>
-  <div class="layout home">
+  <div class="layout index">
     <div class="layout-left">
       <router-list />
     </div>
     <div class="layout-right">
       <h4>
-        【后台管理系统】这里是公用菜单、头部
+        【大屏端】这里是公用的头部
       </h4>
       <main class="layout-box">
         <router-view />
@@ -16,13 +16,13 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
-import RouterList from '@/frameSkeleton/layout/components/routerList.vue'
+import RouterList from '@/layouts/layout/components/routerList.vue'
 
-  @Component<Home>({
-    name: 'Home',
+  @Component<Index>({
+    name: 'Index',
     components: { RouterList }
   })
-export default class Home extends Vue {
+export default class Index extends Vue {
 
 }
 </script>
@@ -46,8 +46,8 @@ export default class Home extends Vue {
       h4 {
         font-size: 20px;
         line-height: 60px;
-        color: blueviolet;
-        border-bottom: 1px solid blueviolet;
+        color: aqua;
+        border-bottom: 1px solid aqua;
       }
     }
   }

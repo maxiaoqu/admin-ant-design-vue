@@ -26,6 +26,12 @@ let config = {
 let newVuecliConfig = new VuecliConfig(config)
 let vuecliConfig = newVuecliConfig.getConfig()
 
+vuecliConfig.css.loaderOptions.less = {
+  lessOptions: {
+    javascriptEnabled: true
+  }
+}
+
 vuecliConfig.devServer = {
   port: nodeEvnt.port,
   host: '0.0.0.0',

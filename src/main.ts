@@ -1,4 +1,5 @@
 import Vue from 'vue'
+import Antd from 'ant-design-vue'
 import App from './App.vue'
 import router from './router'
 import store from './store'
@@ -18,6 +19,7 @@ import installPrototype from '@/utils/install/installPrototype'
 // Vue.use的使用
 Vue.use(installComponent)
 Vue.use(installPrototype)
+Vue.use(Antd)
 
 Vue.config.productionTip = false
 
