@@ -56,10 +56,6 @@ export default {
       required: true
     }
   },
-  mounted() {
-    console.log(999, this.menus)
-  },
-
   methods: {
     onSelect(obj) {
       this.$emit('menuSelect', obj)

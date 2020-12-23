@@ -10,7 +10,7 @@ export interface ThemeState {
   fixedHeader: boolean,
   fixSiderbar: boolean,
   autoHideHeader: boolean,
-  color: any,
+  color: string
   weak: boolean,
   multiTab: boolean
 }
@@ -28,13 +28,13 @@ class Theme extends VuexModule implements ThemeState {
   // state
   public sidebar = true
   public device = 'desktop'
-  public theme = ''
+  public theme = 'dark'
   public layout = ''
   public contentWidth = ''
   public fixedHeader = false
   public fixSiderbar = false
   public autoHideHeader = false
-  public color = null
+  public color = '#52C41A'
   public weak = false
   public multiTab: true
 

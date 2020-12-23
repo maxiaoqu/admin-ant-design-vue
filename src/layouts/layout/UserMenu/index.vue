@@ -1,23 +1,15 @@
 <template>
   <div class="user-wrapper">
     <div class="content-box">
-      <a
-        href="https://pro.loacg.com/docs/getting-started"
-        target="_blank"
-      >
-        <span class="action">
-          <a-icon type="question-circle-o" />
-        </span>
-      </a>
       <NoticeIcon class="action" />
       <a-dropdown>
         <span class="action ant-dropdown-link user-dropdown-menu">
           <a-avatar
             class="avatar"
             size="small"
-            :src="avatar"
+            src=""
           />
-          <span>{{ nickname }}</span>
+          <span>码小趣</span>
         </span>
         <a-menu
           slot="overlay"
@@ -60,35 +52,22 @@
 
 <script>
 import NoticeIcon from '../NoticeIcon'
-import { mapActions, mapGetters } from 'vuex'
 
 export default {
   name: 'UserMenu',
   components: {
     NoticeIcon
   },
-  computed: {
-    ...mapGetters(['nickname', 'avatar'])
-  },
   methods: {
-    ...mapActions(['Logout']),
     handleLogout() {
       this.$confirm({
         title: '提示',
         content: '真的要注销登录吗 ?',
         onOk: () => {
-          return this.Logout({}).then(() => {
-            setTimeout(() => {
-              window.location.reload()
-            }, 16)
-          }).catch(err => {
-            this.$message.error({
-              title: '错误',
-              description: err.message
-            })
-          })
+          console.log('是')
         },
         onCancel() {
+          console.log('否')
         }
       })
     }

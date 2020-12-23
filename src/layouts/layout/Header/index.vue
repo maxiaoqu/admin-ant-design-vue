@@ -60,9 +60,8 @@
 
 <script>
 import UserMenu from '../UserMenu'
-import SMenu from '../Menu'
+import SMenu from '../Menu/menu'
 import Logo from '../Logo'
-import { mixin } from '@/utils/mixin'
 
 export default {
   name: 'GlobalHeader',
@@ -71,8 +70,17 @@ export default {
     SMenu,
     Logo
   },
-  mixins: [mixin],
   props: {
+    fixedHeader: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    sidebarOpened: {
+      type: Boolean,
+      required: false,
+      default: true
+    },
     mode: {
       type: String,
       // sidemenu, topmenu
@@ -115,7 +123,6 @@ export default {
       if (!this.autoHideHeader) {
         return
       }
-
       const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
       if (!this.ticking) {
         this.ticking = true

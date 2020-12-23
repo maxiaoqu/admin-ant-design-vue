@@ -112,17 +112,17 @@ export default {
 </script>
 
 <style lang="css">
-  .header-notice-wrapper {
-    top: 50px !important;
-  }
+.header-notice-wrapper {
+  top: 50px !important;
+}
 </style>
 <style lang="less" scoped>
-  .header-notice{
-    display: inline-block;
-    transition: all 0.3s;
+.header-notice {
+  display: inline-block;
+  transition: all 0.3s;
 
-    span {
-      vertical-align: initial;
-    }
+  span {
+    vertical-align: initial;
   }
+}
 </style>

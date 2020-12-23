@@ -16,7 +16,6 @@
           <h3 class="setting-drawer-index-title">
             整体风格设置
           </h3>
-
           <div class="setting-drawer-index-blockChecbox">
             <a-tooltip>
               <template slot="title">
@@ -303,14 +302,60 @@
 <script>
 import SettingItem from './SettingItem'
 import config from '@/dictionary/defaultTheme'
+import { ThemeModule } from '@/store/modules/theme'
 import { updateTheme, updateColorWeak, colorList } from './settingConfig'
-import { mixin, mixinDevice } from '@/utils/mixin'
 
 export default {
   components: {
     SettingItem
   },
-  mixins: [mixin, mixinDevice],
+  props: {
+    primaryColor: {
+      type: null,
+      required: false,
+      default: null
+    },
+    navTheme: {
+      type: String,
+      required: false,
+      default: 'dark'
+    },
+    layoutMode: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    contentWidth: {
+      type: String,
+      required: false,
+      default: ''
+    },
+    fixedHeader: {
+      type: Boolean,
+      required: false,
+      default: false
+    },
+    fixSiderbar: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    autoHideHeader: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    colorWeak: {
+      type: Boolean,
+      required: true,
+      default: false
+    },
+    multiTab: {
+      type: Boolean,
+      required: true,
+      default: true
+    }
+  },
   data() {
     return {
       visible: false,
@@ -318,7 +363,6 @@ export default {
       handle: <div/>
     }
   },
-  watch: {},
   mounted() {
     updateTheme(this.primaryColor)
     if (this.colorWeak !== config.colorWeak) {
@@ -336,14 +380,14 @@ export default {
       this.visible = !this.visible
     },
     onColorWeak(checked) {
-      this.$store.dispatch('ToggleWeak', checked)
+      ThemeModule.ToggleWeak(checked)
       updateColorWeak(checked)
     },
     onMultiTab(checked) {
-      this.$store.dispatch('ToggleMultiTab', checked)
+      ThemeModule.ToggleMultiTab(checked)
     },
     handleMenuTheme(theme) {
-      this.$store.dispatch('ToggleTheme', theme)
+      ThemeModule.ToggleTheme(theme)
     },
     doCopy() {
       // get current settings from mixin or this.$store.state.app, pay attention to the property name
@@ -374,31 +418,31 @@ export default {
       })
     },
     handleLayout(mode) {
-      this.$store.dispatch('ToggleLayoutMode', mode)
+      ThemeModule.ToggleLayoutMode(mode)
       // 因为顶部菜单不能固定左侧菜单栏，所以强制关闭
       this.handleFixSiderbar(false)
     },
     handleContentWidthChange(type) {
-      this.$store.dispatch('ToggleContentWidth', type)
+      ThemeModule.ToggleContentWidth(type)
     },
     changeColor(color) {
       if (this.primaryColor !== color) {
-        this.$store.dispatch('ToggleColor', color)
+        ThemeModule.ToggleColor(color)
         updateTheme(color)
       }
     },
     handleFixedHeader(fixed) {
-      this.$store.dispatch('ToggleFixedHeader', fixed)
+      ThemeModule.ToggleFixedHeader(fixed)
     },
     handleFixedHeaderHidden(autoHidden) {
-      this.$store.dispatch('ToggleFixedHeaderHidden', autoHidden)
+      ThemeModule.ToggleFixedHeaderHidden(autoHidden)
     },
     handleFixSiderbar(fixed) {
       if (this.layoutMode === 'topmenu') {
-        this.$store.dispatch('ToggleFixSiderbar', false)
+        ThemeModule.ToggleFixSiderbar(false)
         return
       }
-      this.$store.dispatch('ToggleFixSiderbar', fixed)
+      ThemeModule.ToggleFixSiderbar(fixed)
     }
   }
 }
@@ -407,7 +451,6 @@ export default {
 <style lang="less" scoped>
 
 .setting-drawer-index-content {
-
   .setting-drawer-index-blockChecbox {
     display: flex;
 

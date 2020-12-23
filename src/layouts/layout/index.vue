@@ -36,14 +36,16 @@
       :style="{paddingLeft: contentPaddingLeft, minHeight: '100vh'}"
     >
       <!-- layout header -->
-      <!--      <global-header-->
-      <!--        :mode='layoutMode'-->
-      <!--        :menus='menus'-->
-      <!--        :theme='navTheme'-->
-      <!--        :collapsed='collapsed'-->
-      <!--        :device='device'-->
-      <!--        @toggle='toggle'-->
-      <!--      />-->
+      <global-header
+        :mode="layoutMode"
+        :menus="menus"
+        :theme="navTheme"
+        :collapsed="collapsed"
+        :fixed-header="fixedHeader"
+        :sidebar-opened="sidebarOpened"
+        :device="device"
+        @toggle="toggle"
+      />
 
       <!-- layout content -->
       <a-layout-content :style="{height: '100%', margin: '24px 24px 0', paddingTop: fixedHeader ? '64px' : '0'}">
@@ -60,7 +62,17 @@
         <global-footer />
       </a-layout-footer>
 
-      <!-- <setting-drawer v-if='!production'></setting-drawer>-->
+      <setting-drawer
+        :primary-color="primaryColor"
+        :nav-theme="navTheme"
+        :layout-mode="layoutMode"
+        :content-width="contentWidth"
+        :fixed-header="fixedHeader"
+        :fix-siderbar="fixSiderbar"
+        :auto-hide-header="autoHideHeader"
+        :color-weak="colorWeak"
+        :multi-tab="multiTab"
+      />
     </a-layout>
   </a-layout>
 </template>
@@ -71,19 +83,17 @@ import { RouterModule } from '@/store/modules/router'
 import { ThemeModule } from '@/store/modules/theme'
 import config from '@/dictionary/defaultTheme'
 
-import SideMenu from './Menu/SideMenu'
-// import GlobalHeader from './Header'
-import GlobalFooter from './Footer'
-// import SettingDrawer from './Setting/SettingDrawer'
+import SideMenu from './Menu/SideMenu.vue'
+import GlobalHeader from './Header/index.vue'
+import GlobalFooter from './Footer/index.vue'
+import SettingDrawer from './Setting/SettingDrawer.vue'
 
 @Component<Index>({
   name: 'Index',
-  components: { SideMenu, GlobalFooter }
-  // components: {SideMenu, GlobalHeader, GlobalFooter, SettingDrawer}
+  components: { SideMenu, GlobalHeader, GlobalFooter, SettingDrawer }
 })
 
 export default class Index extends Vue {
-  private collapsed: boolean = false
   private menus: any[] = []
   private contentPaddingLeft: string = '80px'
   private collapsed: boolean = false
@@ -113,10 +123,16 @@ export default class Index extends Vue {
   }
 
   mounted() {
+    console.log(123123, this.primaryColor)
     this.menus = this.mainMenuArr
   }
 
   private menuSelect() {
+  }
+
+  private toggle() {
+    this.collapsed = !this.collapsed
+    ThemeModule.setSidebar(!this.collapsed)
   }
 
   private drawerClose() {
