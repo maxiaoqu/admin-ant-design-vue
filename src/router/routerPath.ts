@@ -1,8 +1,6 @@
 import { RouteConfig } from 'vue-router'
 
 import Index from '@/layouts/layout/index.vue'
-import Home from '@/layouts/layout/home.vue'
-import Child from '@/layouts/layout/child.vue'
 
 // 基础页面路由
 export const baseRoutes: RouteConfig[] = [
@@ -81,7 +79,7 @@ export const homeRoutes: RouteConfig[] = [
       title: '后台管理风格'
     },
     redirect: '/homeRoutes/Admin2',
-    component: Home,
+    component: Index,
     children: [{
       path: 'Admin2',
       name: 'Admin2',
@@ -109,7 +107,7 @@ export const childRoutes: RouteConfig[] = [
       title: '其他风格'
     },
     redirect: '/childRoutes/Admin3',
-    component: Child,
+    component: Index,
     children: [{
       path: 'Admin3',
       name: 'Admin3',

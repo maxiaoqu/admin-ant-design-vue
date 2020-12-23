@@ -1,5 +1,6 @@
 const ConsoleInfo = require('timi-tools/console/index')
 const VuecliConfig = require('timi-tools/vue/vuecliConfig')
+const createThemeColorReplacerPlugin = require('./config/plugin.config')
 
 const nodeEvnt = require('./src/environment/nodeEvnt.ts')
 
@@ -25,6 +26,10 @@ let config = {
 
 let newVuecliConfig = new VuecliConfig(config)
 let vuecliConfig = newVuecliConfig.getConfig()
+
+vuecliConfig.configureWebpack = (config) => {
+  config.plugins.push(createThemeColorReplacerPlugin())
+}
 
 vuecliConfig.css.loaderOptions.less = {
   lessOptions: {

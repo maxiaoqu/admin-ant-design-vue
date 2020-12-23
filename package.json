@@ -19,6 +19,7 @@
     "vuex-module-decorators": "^0.11.0"
   },
   "devDependencies": {
+    "@ant-design/colors": "^3.2.1",
     "@babel/preset-typescript": "^7.10.1",
     "@vue/cli-plugin-babel": "^4.1.0",
     "@vue/cli-plugin-eslint": "^4.1.0",
@@ -40,15 +41,7 @@
     "timi-tools": "^1.0.0",
     "typescript": "~3.5.3",
     "vue-template-compiler": "^2.6.10",
-    "webpack-bundle-analyzer": "^3.8.0"
-  },
-  "gitHooks": {
-    "pre-commit": "lint-staged"
-  },
-  "lint-staged": {
-    "*.{js,vue,ts}": [
-      "vue-cli-service lint",
-      "git add"
-    ]
+    "webpack-bundle-analyzer": "^3.8.0",
+    "webpack-theme-color-replacer": "^1.2.17"
   }
 }
