@@ -25,7 +25,7 @@
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="toggle"
           />
-          <UserMenu />
+          <UserMenu/>
         </div>
         <div
           v-else
@@ -50,7 +50,7 @@
                 @click="toggle"
               />
             </div>
-            <UserMenu class="header-index-right" />
+            <UserMenu class="header-index-right"/>
           </div>
         </div>
       </a-layout-header>
@@ -83,7 +83,6 @@ export default {
     },
     mode: {
       type: String,
-      // sidemenu, topmenu
       default: 'sidemenu'
     },
     menus: {
@@ -113,7 +112,8 @@ export default {
     }
   },
   mounted() {
-    document.addEventListener('scroll', this.handleScroll, { passive: true })
+    console.log(999, 123, this.mode)
+    document.addEventListener('scroll', this.handleScroll, {passive: true})
   },
   beforeDestroy() {
     document.body.removeEventListener('scroll', this.handleScroll, true)

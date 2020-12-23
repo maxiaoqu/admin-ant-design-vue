@@ -5,6 +5,7 @@
   >
     <!-- SideMenu -->
     <a-drawer
+      v-if="isMobile()"
       placement="left"
       :wrap-class-name="`drawer-sider ${navTheme}`"
       :closable="false"
@@ -13,6 +14,7 @@
     >
       <side-menu
         mode="inline"
+        :isDesktop="isDesktop()"
         :fix-siderbar="fixSiderbar"
         :menus="menus"
         :theme="navTheme"
@@ -23,7 +25,9 @@
     </a-drawer>
 
     <side-menu
+      v-else-if="isSideMenu()"
       mode="inline"
+      :isDesktop="isDesktop()"
       :fix-siderbar="fixSiderbar"
       :menus="menus"
       :theme="navTheme"
@@ -52,14 +56,14 @@
         <!--        <multi-tab v-if='multiTab'></multi-tab>-->
         <transition name="page-transition">
           <keep-alive>
-            <router-view />
+            <router-view/>
           </keep-alive>
         </transition>
       </a-layout-content>
 
       <!-- layout footer -->
       <a-layout-footer>
-        <global-footer />
+        <global-footer/>
       </a-layout-footer>
 
       <setting-drawer
@@ -78,24 +82,24 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue } from 'vue-property-decorator'
-import { RouterModule } from '@/store/modules/router'
-import { ThemeModule } from '@/store/modules/theme'
-import config from '@/dictionary/defaultTheme'
+import {Component, Vue, Watch} from 'vue-property-decorator'
+import {RouterModule} from '@/store/modules/router'
+import {ThemeModule} from '@/store/modules/theme'
 
 import SideMenu from './Menu/SideMenu.vue'
 import GlobalHeader from './Header/index.vue'
 import GlobalFooter from './Footer/index.vue'
 import SettingDrawer from './Setting/SettingDrawer.vue'
+import {DEVICE_TYPE} from "@utils/device";
 
 @Component<Index>({
   name: 'Index',
-  components: { SideMenu, GlobalHeader, GlobalFooter, SettingDrawer }
+  components: {SideMenu, GlobalHeader, GlobalFooter, SettingDrawer}
 })
 
 export default class Index extends Vue {
   private menus: any[] = []
-  private contentPaddingLeft: string = '80px'
+  private contentPaddingLeft: string = '0'
   private collapsed: boolean = false
 
   // 对应的主题
@@ -112,19 +116,54 @@ export default class Index extends Vue {
   private sidebarOpened = ThemeModule.sidebar
   private multiTab = ThemeModule.multiTab
 
-  // 默认主题
-  private production: boolean = config.production
-
   get mainMenuArr() {
     return RouterModule.getMainMenu
   }
 
-  created() {
+  @Watch('sidebarOpened')
+  sidebarOpenedChange(val) {
+    this.collapsed = !val
   }
 
   mounted() {
-    console.log(123123, this.primaryColor)
     this.menus = this.mainMenuArr
+    const userAgent = navigator.userAgent
+    if (userAgent.indexOf('Edge') > -1) {
+      this.$nextTick(() => {
+        this.collapsed = !this.collapsed
+        setTimeout(() => {
+          this.collapsed = !this.collapsed
+        }, 16)
+      })
+    }
+  }
+
+  private getContentPaddingLeft() {
+    let PaddingLeft = '0px'
+    if (!this.fixSidebar || this.isMobile()) {
+      PaddingLeft = '0px'
+    }
+    if (this.sidebarOpened) {
+      PaddingLeft = '256px'
+    } else {
+      PaddingLeft = '80px'
+    }
+    this.contentPaddingLeft = PaddingLeft
+  }
+
+  private isDesktop = () => {
+    let device = ThemeModule.device
+    return device === DEVICE_TYPE.DESKTOP
+  }
+
+  private isSideMenu = () => {
+    let layoutMode = ThemeModule.layout
+    return !(layoutMode === 'topmenu')
+  }
+
+  private isMobile = () => {
+    let device = ThemeModule.device
+    return device === DEVICE_TYPE.MOBILE
   }
 
   private menuSelect() {

@@ -5,7 +5,7 @@ import router from './router'
 import store from './store'
 
 // 设置根节点，将项目中的px转化成rems
-import '@/utils/rem'
+// import '@/utils/rem'
 
 // 全局组件、方法注册
 

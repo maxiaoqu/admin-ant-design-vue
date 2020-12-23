@@ -1,4 +1,4 @@
-import { VuexModule, Module, Mutation, Action, getModule } from 'vuex-module-decorators'
+import {VuexModule, Module, Mutation, Action, getModule} from 'vuex-module-decorators'
 import store from '@/store'
 
 export interface ThemeState {
@@ -22,14 +22,14 @@ export interface ThemeState {
   参数三：是否开启命名空间，如果你的模块很多，强烈建议开启
   参数四：挂载的store目标
 */
-@Module({ name: 'theme', dynamic: true, namespaced: true, store })
+@Module({name: 'theme', dynamic: true, namespaced: true, store})
 
 class Theme extends VuexModule implements ThemeState {
   // state
   public sidebar = true
   public device = 'desktop'
   public theme = 'dark'
-  public layout = ''
+  public layout = 'sidemenu'
   public contentWidth = ''
   public fixedHeader = false
   public fixSiderbar = false

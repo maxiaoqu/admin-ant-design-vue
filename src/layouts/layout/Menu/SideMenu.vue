@@ -1,12 +1,12 @@
 <template>
   <a-layout-sider
     v-model="collapsed"
-    :class="['sider', true ? null : 'shadow', theme, fixSiderbar ? 'ant-fixed-sidemenu' : null]"
+    :class="['sider', isDesktop ? null : 'shadow', theme, fixSiderbar ? 'ant-fixed-sidemenu' : null]"
     width="256px"
     :collapsible="collapsible"
     :trigger="null"
   >
-    <Logo />
+    <Logo/>
     <SMenu
       :collapsed="collapsed"
       :menu="menus"
@@ -24,8 +24,12 @@ import Logo from '../Logo'
 
 export default {
   name: 'SideMenu',
-  components: { Logo, SMenu },
+  components: {Logo, SMenu},
   props: {
+    isDesktop: {
+      type: Boolean,
+      required: false
+    },
     fixSiderbar: {
       type: Boolean,
       required: false,

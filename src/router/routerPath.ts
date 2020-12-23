@@ -48,6 +48,7 @@ export const indexRoutes: RouteConfig[] = [
     path: '/index',
     name: 'index',
     meta: {
+      icon: "form",
       title: '大屏端风格'
     },
     redirect: '/index/Admin1',
@@ -56,6 +57,7 @@ export const indexRoutes: RouteConfig[] = [
       path: 'Admin1',
       name: 'Admin1',
       meta: {
+        icon: "form",
         title: '大屏端1'
       },
       component: () => import('@/views/Admin.vue')
@@ -63,6 +65,7 @@ export const indexRoutes: RouteConfig[] = [
       path: 'Home1',
       name: 'Home1',
       meta: {
+        icon: "form",
         title: '大屏端2'
       },
       component: () => import('@/views/Home.vue')
@@ -76,6 +79,7 @@ export const homeRoutes: RouteConfig[] = [
     path: '/homeRoutes',
     name: 'homeRoutes',
     meta: {
+      icon: "form",
       title: '后台管理风格'
     },
     redirect: '/homeRoutes/Admin2',
@@ -84,6 +88,7 @@ export const homeRoutes: RouteConfig[] = [
       path: 'Admin2',
       name: 'Admin2',
       meta: {
+        icon: "form",
         title: '后台管理系统1'
       },
       component: () => import('@/views/Admin.vue')
@@ -91,6 +96,7 @@ export const homeRoutes: RouteConfig[] = [
       path: 'Home2',
       name: 'Home2',
       meta: {
+        icon: "form",
         title: '后台管理系统2'
       },
       component: () => import('@/views/Home.vue')
@@ -104,6 +110,7 @@ export const childRoutes: RouteConfig[] = [
     path: '/childRoutes',
     name: 'childRoutes',
     meta: {
+      icon: "form",
       title: '其他风格'
     },
     redirect: '/childRoutes/Admin3',
@@ -112,6 +119,7 @@ export const childRoutes: RouteConfig[] = [
       path: 'Admin3',
       name: 'Admin3',
       meta: {
+        icon: "form",
         title: '其他系统1'
       },
       component: () => import('@/views/Admin.vue')
@@ -119,6 +127,7 @@ export const childRoutes: RouteConfig[] = [
       path: 'Home3',
       name: 'Home3',
       meta: {
+        icon: "form",
         title: '其他系统2'
       },
       component: () => import('@/views/Home.vue')

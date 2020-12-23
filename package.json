@@ -12,6 +12,7 @@
   "dependencies": {
     "ant-design-vue": "^1.7.2",
     "axios": "^0.19.2",
+    "enquire.js": "^2.1.6",
     "vue": "^2.6.10",
     "vue-property-decorator": "^8.3.0",
     "vue-router": "^3.1.3",
