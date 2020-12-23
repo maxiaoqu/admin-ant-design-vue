@@ -25,7 +25,7 @@
             :type="collapsed ? 'menu-unfold' : 'menu-fold'"
             @click="toggle"
           />
-          <UserMenu/>
+          <UserMenu :avatar="avatar"/>
         </div>
         <div
           v-else
@@ -71,6 +71,11 @@ export default {
     Logo
   },
   props: {
+    avatar: {
+      type: null,
+      required: false,
+      default: null
+    },
     fixedHeader: {
       type: Boolean,
       required: false,

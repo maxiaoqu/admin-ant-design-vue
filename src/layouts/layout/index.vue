@@ -41,6 +41,7 @@
     >
       <!-- layout header -->
       <global-header
+        :avatar="avatar"
         :mode="layoutMode"
         :menus="menus"
         :theme="navTheme"
@@ -98,6 +99,8 @@ import {DEVICE_TYPE} from "@utils/device";
 })
 
 export default class Index extends Vue {
+  private avatar: any = require('../../assets/img/avatar.jpg')
+
   private menus: any[] = []
   private contentPaddingLeft: string = '0'
   private collapsed: boolean = false
