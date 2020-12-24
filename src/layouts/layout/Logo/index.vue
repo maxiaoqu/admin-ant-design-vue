@@ -8,22 +8,15 @@
   </div>
 </template>
 
-<script>
+<script lang="ts">
+import {Component, Prop, Vue} from 'vue-property-decorator'
 
-export default {
-  name: 'Logo',
-  components: {},
-  props: {
-    title: {
-      type: String,
-      default: 'XXX平台',
-      required: false
-    },
-    showTitle: {
-      type: Boolean,
-      default: true,
-      required: false
-    }
-  }
+@Component<Logo>({
+  name: 'Logo'
+})
+
+export default class Logo extends Vue {
+  @Prop({default: 'XXX平台'}) public title!: string
+  @Prop({default: true}) public showTitle!: boolean
 }
 </script>

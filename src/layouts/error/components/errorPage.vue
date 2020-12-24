@@ -58,7 +58,7 @@
           v-for="(item,index) in errorInfo"
           :key="item"
         >
-          {{ index+1 }}、{{ item }}
+          {{ index + 1 }}、{{ item }}
         </p>
       </div>
       <div class="ErrorPage-button">
@@ -82,167 +82,167 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop } from 'vue-property-decorator'
+import {Component, Vue, Prop} from 'vue-property-decorator'
 
-  @Component<ErrorPage>({
-    name: 'ErrorPage'
-  })
+@Component<ErrorPage>({
+  name: 'ErrorPage'
+})
 export default class ErrorPage extends Vue {
-    @Prop({ default: '' }) public errorTitle!: string;
-    @Prop({ default: '' }) public errorMessage!: string
-    @Prop({ default: () => [] }) public errorInfo!: string
+  @Prop({default: ''}) public errorTitle!: string;
+  @Prop({default: ''}) public errorMessage!: string
+  @Prop({default: () => []}) public errorInfo!: string
 
-    // 返回上一页
-    private backHistory() {
-      this.$router.go(-1)
-    }
+  // 返回上一页
+  private backHistory() {
+    this.$router.go(-1)
+  }
 
-    // 返回首页
-    private backIndexHome() {
-      this.$router.replace({
-        path: '/'
-      })
-    }
+  // 返回首页
+  private backIndexHome() {
+    this.$router.replace({
+      path: '/'
+    })
+  }
 }
 </script>
 
 <style lang="less" scoped>
-  .ErrorPage {
-    width: 100%;
-    height: 100%;
-    background-color: #2f3242;
-    user-select: none;
+.ErrorPage {
+  width: 100%;
+  height: 100%;
+  background-color: #2f3242;
+  user-select: none;
 
-    svg {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      margin-top: -250px;
-      margin-left: -400px
-    }
+  svg {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -400px
+  }
 
-    .ErrorPage-box {
-      height: 200px;
-      width: 380px;
-      position: absolute;
-      top: 36%;
-      left: 50%;
-      margin-top: -100px;
-      margin-left: 50px;
-      color: #fff;
-      font-family: Roboto;
-      font-weight: 300;
+  .ErrorPage-box {
+    height: 200px;
+    width: 380px;
+    position: absolute;
+    top: 36%;
+    left: 50%;
+    margin-top: -100px;
+    margin-left: 50px;
+    color: #fff;
+    font-family: Roboto;
+    font-weight: 300;
 
-      .ErrorPage {
-        &-title {
-          font-size: 60px;
-          line-height: 46px;
-          margin-bottom: 40px
+    .ErrorPage {
+      &-title {
+        font-size: 60px;
+        line-height: 46px;
+        margin-bottom: 40px
+      }
+
+      &-message {
+        font-size: 20px;
+        font-weight: 600;
+      }
+
+      &-info {
+        padding-top: 20px;
+        text-align: left;
+        color: #F2773F;
+
+        h4 {
+          font-size: 18px;
         }
 
-        &-message {
-          font-size: 20px;
-          font-weight: 600;
+        p {
+          font-size: 16px;
+          padding-left: 40px;
+          font-weight: 400;
         }
+      }
 
-        &-info {
-          padding-top: 20px;
-          text-align: left;
-          color: #F2773F;
+      &-button {
+        &-group {
+          margin-top: 40px;
 
-          h4 {
-            font-size: 18px;
-          }
+          button {
+            background: #007FB2;
+            padding: 8px 25px;
+            border-radius: 4px;
+            color: #fff;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all .3s linear;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            margin-right: 10px;
 
-          p {
-            font-size: 16px;
-            padding-left: 40px;
-            font-weight: 400;
-          }
-        }
-
-        &-button {
-          &-group {
-            margin-top: 40px;
-
-            button {
-              background: #007FB2;
-              padding: 8px 25px;
-              border-radius: 4px;
-              color: #fff;
-              font-weight: 700;
-              font-size: 14px;
-              transition: all .3s linear;
-              border: none;
-              cursor: pointer;
-              text-decoration: none;
-              margin-right: 10px;
-
-              &:hover {
-                background: #5a5c6c;
-                color: #fff
-              }
+            &:hover {
+              background: #5a5c6c;
+              color: #fff
             }
           }
         }
       }
     }
+  }
 
-    #Polygon-1, #Polygon-2, #Polygon-3, #Polygon-4, #Polygon-5 {
-      -webkit-animation: float 1s infinite ease-in-out alternate;
-      animation: float 1s infinite ease-in-out alternate
-    }
+  #Polygon-1, #Polygon-2, #Polygon-3, #Polygon-4, #Polygon-5 {
+    -webkit-animation: float 1s infinite ease-in-out alternate;
+    animation: float 1s infinite ease-in-out alternate
+  }
 
-    #Polygon-2 {
-      -webkit-animation-delay: .2s;
-      animation-delay: .2s
-    }
+  #Polygon-2 {
+    -webkit-animation-delay: .2s;
+    animation-delay: .2s
+  }
 
-    #Polygon-3 {
-      -webkit-animation-delay: .4s;
-      animation-delay: .4s
-    }
+  #Polygon-3 {
+    -webkit-animation-delay: .4s;
+    animation-delay: .4s
+  }
 
-    #Polygon-4 {
-      -webkit-animation-delay: .6s;
-      animation-delay: .6s
-    }
+  #Polygon-4 {
+    -webkit-animation-delay: .6s;
+    animation-delay: .6s
+  }
 
-    #Polygon-5 {
-      -webkit-animation-delay: .8s;
-      animation-delay: .8s
-    }
+  #Polygon-5 {
+    -webkit-animation-delay: .8s;
+    animation-delay: .8s
+  }
 
-    @-webkit-keyframes float {
-      100% {
-        -webkit-transform: translateY(20px);
-        transform: translateY(20px)
-      }
-    }
-
-    @keyframes float {
-      100% {
-        -webkit-transform: translateY(20px);
-        transform: translateY(20px)
-      }
-    }
-
-    @media (max-width: 450px) {
-      svg {
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -250px;
-        margin-left: -190px
-      }
-
-      .message-box {
-        top: 50%;
-        left: 50%;
-        margin-top: -100px;
-        margin-left: -190px;
-        text-align: center
-      }
+  @-webkit-keyframes float {
+    100% {
+      -webkit-transform: translateY(20px);
+      transform: translateY(20px)
     }
   }
+
+  @keyframes float {
+    100% {
+      -webkit-transform: translateY(20px);
+      transform: translateY(20px)
+    }
+  }
+
+  @media (max-width: 450px) {
+    svg {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-top: -250px;
+      margin-left: -190px
+    }
+
+    .message-box {
+      top: 50%;
+      left: 50%;
+      margin-top: -100px;
+      margin-left: -190px;
+      text-align: center
+    }
+  }
+}
 </style>

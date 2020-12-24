@@ -18,52 +18,27 @@
   </a-layout-sider>
 </template>
 
-<script>
+<script lang="ts">
+import {Component, Prop, Vue} from 'vue-property-decorator'
 import SMenu from './menu'
-import Logo from '../Logo'
+import Logo from '../Logo/index.vue'
 
-export default {
+@Component<SideMenu>({
   name: 'SideMenu',
-  components: {Logo, SMenu},
-  props: {
-    isDesktop: {
-      type: Boolean,
-      required: false
-    },
-    fixSiderbar: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    mode: {
-      type: String,
-      required: false,
-      default: 'inline'
-    },
-    theme: {
-      type: String,
-      required: false,
-      default: 'dark'
-    },
-    collapsible: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    collapsed: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    menus: {
-      type: Array,
-      required: true
-    }
-  },
-  methods: {
-    onSelect(obj) {
-      this.$emit('menuSelect', obj)
-    }
+  components: {Logo, SMenu}
+})
+
+export default class SideMenu extends Vue {
+  @Prop({default: false}) public isDesktop!: boolean
+  @Prop({default: false}) public fixSiderbar!: boolean
+  @Prop({default: 'inline'}) public mode!: string
+  @Prop({default: 'dark'}) public theme!: string
+  @Prop({default: false}) public collapsible!: boolean
+  @Prop({default: false}) public collapsed!: boolean
+  @Prop({default: () => []}) public menus!: any[]
+
+  private onSelect(obj) {
+    this.$emit('menuSelect', obj)
   }
 }
 </script>

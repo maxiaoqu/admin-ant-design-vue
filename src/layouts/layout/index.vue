@@ -40,7 +40,7 @@
       :style="{paddingLeft: contentPaddingLeft, minHeight: '100vh'}"
     >
       <!-- layout header -->
-      <global-header
+      <layout-header
         :avatar="avatar"
         :mode="layoutMode"
         :menus="menus"
@@ -54,7 +54,6 @@
 
       <!-- layout content -->
       <a-layout-content :style="{height: '100%', margin: '24px 24px 0', paddingTop: fixedHeader ? '64px' : '0'}">
-        <!--        <multi-tab v-if='multiTab'></multi-tab>-->
         <transition name="page-transition">
           <keep-alive>
             <router-view/>
@@ -64,20 +63,8 @@
 
       <!-- layout footer -->
       <a-layout-footer>
-        <global-footer/>
+        <layout-footer/>
       </a-layout-footer>
-
-      <setting-drawer
-        :primary-color="primaryColor"
-        :nav-theme="navTheme"
-        :layout-mode="layoutMode"
-        :content-width="contentWidth"
-        :fixed-header="fixedHeader"
-        :fix-siderbar="fixSiderbar"
-        :auto-hide-header="autoHideHeader"
-        :color-weak="colorWeak"
-        :multi-tab="multiTab"
-      />
     </a-layout>
   </a-layout>
 </template>
@@ -88,14 +75,13 @@ import {RouterModule} from '@/store/modules/router'
 import {ThemeModule} from '@/store/modules/theme'
 
 import SideMenu from './Menu/SideMenu.vue'
-import GlobalHeader from './Header/index.vue'
-import GlobalFooter from './Footer/index.vue'
-import SettingDrawer from './Setting/SettingDrawer.vue'
+import LayoutHeader from './Header/index.vue'
+import LayoutFooter from './Footer/index.vue'
 import {DEVICE_TYPE} from "@utils/device";
 
 @Component<Index>({
   name: 'Index',
-  components: {SideMenu, GlobalHeader, GlobalFooter, SettingDrawer}
+  components: {SideMenu, LayoutHeader, LayoutFooter}
 })
 
 export default class Index extends Vue {

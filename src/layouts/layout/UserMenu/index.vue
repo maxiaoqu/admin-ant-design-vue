@@ -16,30 +16,27 @@
           class="user-dropdown-menu-wrapper"
         >
           <a-menu-item key="0">
-            <router-link :to="{name: 'center'}">
+            <router-link :to="{name: 'personal'}">
               <a-icon type="user"/>
               <span>个人中心</span>
             </router-link>
           </a-menu-item>
           <a-menu-item key="1">
-            <router-link :to="{name: 'settings'}">
+            <router-link :to="{name: 'account'}">
               <a-icon type="setting"/>
               <span>账户设置</span>
             </router-link>
           </a-menu-item>
-          <a-menu-item
-            key="2"
-            disabled
-          >
-            <a-icon type="setting"/>
-            <span>测试</span>
+          <a-menu-item key="2">
+            <router-link :to="{name: 'theme'}">
+              <a-icon type="setting"/>
+              <span>主题设置</span>
+            </router-link>
           </a-menu-item>
           <a-menu-divider/>
           <a-menu-item key="3">
-            <a
-              href="javascript:;"
-              @click="handleLogout"
-            >
+            <a href="javascript: void (0);"
+               @click="handleLogout">
               <a-icon type="logout"/>
               <span>退出登录</span>
             </a>
@@ -50,34 +47,29 @@
   </div>
 </template>
 
-<script>
-import NoticeIcon from '../NoticeIcon'
+<script lang="ts">
+import {Component, Prop, Vue} from 'vue-property-decorator'
+import NoticeIcon from '../NoticeIcon/index.vue'
 
-export default {
+@Component<UserMenu>({
   name: 'UserMenu',
-  components: {
-    NoticeIcon
-  },
-  props: {
-    avatar: {
-      type: null,
-      required: false,
-      default: null
-    }
-  },
-  methods: {
-    handleLogout() {
-      this.$confirm({
-        title: '提示',
-        content: '真的要注销登录吗 ?',
-        onOk: () => {
-          console.log('是')
-        },
-        onCancel() {
-          console.log('否')
-        }
-      })
-    }
+  components: {NoticeIcon}
+})
+
+export default class UserMenu extends Vue {
+  @Prop({default: null}) public avatar!: any
+
+  private handleLogout() {
+    this.$confirm({
+      title: '提示',
+      content: '真的要注销登录吗 ?',
+      onOk: () => {
+        console.log('是')
+      },
+      onCancel() {
+        console.log('否')
+      }
+    })
   }
 }
 </script>

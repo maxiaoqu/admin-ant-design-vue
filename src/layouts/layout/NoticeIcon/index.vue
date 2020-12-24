@@ -86,36 +86,31 @@
   </a-popover>
 </template>
 
-<script>
-export default {
-  name: 'HeaderNotice',
-  data() {
-    return {
-      loading: false,
-      visible: false
-    }
-  },
-  methods: {
-    fetchNotice() {
-      if (!this.visible) {
-        this.loading = true
-        setTimeout(() => {
-          this.loading = false
-        }, 2000)
-      } else {
+<script lang="ts">
+import {Component, Vue} from 'vue-property-decorator'
+
+@Component<HeaderNotice>({
+  name: 'HeaderNotice'
+})
+
+export default class HeaderNotice extends Vue {
+  private loading: boolean = false
+  private visible: boolean = false
+
+  private fetchNotice() {
+    if (!this.visible) {
+      this.loading = true
+      setTimeout(() => {
         this.loading = false
-      }
-      this.visible = !this.visible
+      }, 2000)
+    } else {
+      this.loading = false
     }
+    this.visible = !this.visible
   }
 }
 </script>
 
-<style lang="css">
-.header-notice-wrapper {
-  top: 50px !important;
-}
-</style>
 <style lang="less" scoped>
 .header-notice {
   display: inline-block;

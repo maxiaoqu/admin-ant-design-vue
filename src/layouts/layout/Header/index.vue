@@ -58,95 +58,64 @@
   </transition>
 </template>
 
-<script>
-import UserMenu from '../UserMenu'
-import SMenu from '../Menu/menu'
-import Logo from '../Logo'
+<script lang="ts">
+import {Component, Prop, Vue} from 'vue-property-decorator'
+import UserMenu from '../UserMenu/index.vue'
+import SMenu from '../Menu/menu/index.vue'
+import Logo from '../Logo/index.vue'
 
-export default {
-  name: 'GlobalHeader',
-  components: {
-    UserMenu,
-    SMenu,
-    Logo
-  },
-  props: {
-    avatar: {
-      type: null,
-      required: false,
-      default: null
-    },
-    fixedHeader: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    sidebarOpened: {
-      type: Boolean,
-      required: false,
-      default: true
-    },
-    mode: {
-      type: String,
-      default: 'sidemenu'
-    },
-    menus: {
-      type: Array,
-      required: true
-    },
-    theme: {
-      type: String,
-      required: false,
-      default: 'dark'
-    },
-    collapsed: {
-      type: Boolean,
-      required: false,
-      default: false
-    },
-    device: {
-      type: String,
-      required: false,
-      default: 'desktop'
-    }
-  },
-  data() {
-    return {
-      visible: true,
-      oldScrollTop: 0
-    }
-  },
+@Component<LayerHeader>({
+  name: 'LayerHeader',
+  components: {UserMenu, SMenu, Logo}
+})
+
+export default class LayerHeader extends Vue {
+  private visible: boolean = true
+  private oldScrollTop: number = 0
+
+
+  @Prop({default: null}) public avatar!: any
+  @Prop({default: false}) public fixedHeader!: boolean
+  @Prop({default: true}) public sidebarOpened!: boolean
+  @Prop({default: 'sidemenu'}) public mode!: string
+  @Prop({default: () => []}) public menus!: any[]
+  @Prop({default: 'dark'}) public theme!: string
+  @Prop({default: false}) public collapsed!: boolean
+  @Prop({default: 'desktop'}) public device!: string
+
   mounted() {
     console.log(999, 123, this.mode)
-    document.addEventListener('scroll', this.handleScroll, {passive: true})
-  },
+    (document as any).addEventListener('scroll', this.handleScroll, {passive: true})
+  }
+
   beforeDestroy() {
     document.body.removeEventListener('scroll', this.handleScroll, true)
-  },
-  methods: {
-    handleScroll() {
-      if (!this.autoHideHeader) {
-        return
-      }
-      const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
-      if (!this.ticking) {
-        this.ticking = true
-        requestAnimationFrame(() => {
-          if (this.oldScrollTop > scrollTop) {
-            this.visible = true
-          } else if (scrollTop > 300 && this.visible) {
-            this.visible = false
-          } else if (scrollTop < 300 && !this.visible) {
-            this.visible = true
-          }
-          this.oldScrollTop = scrollTop
-          this.ticking = false
-        })
-      }
-    },
-    toggle() {
-      this.$emit('toggle')
+  }
+
+  private handleScroll() {
+    if (!this.autoHideHeader) {
+      return
     }
+    const scrollTop = document.body.scrollTop + document.documentElement.scrollTop
+
+    if (!this.ticking) {
+      this.ticking = true
+      requestAnimationFrame(() => {
+        if (this.oldScrollTop > scrollTop) {
+          this.visible = true
+        } else if (scrollTop > 300 && this.visible) {
+          this.visible = false
+        } else if (scrollTop < 300 && !this.visible) {
+          this.visible = true
+        }
+        this.oldScrollTop = scrollTop
+        this.ticking = false
+      })
+    }
+  }
+
+  private toggle() {
+    this.$emit('toggle')
   }
 }
 </script>

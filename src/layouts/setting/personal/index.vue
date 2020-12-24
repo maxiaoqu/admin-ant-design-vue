@@ -1,12 +1,10 @@
 <template>
-  <div class="Component">
-    Component
-  </div>
+  <h4>个人中心</h4>
 </template>
 
 <script>
 export default {
-  name: 'Component'
+  name: "personal"
 }
 </script>
 
