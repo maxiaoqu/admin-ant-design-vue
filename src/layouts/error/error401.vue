@@ -1,9 +1,8 @@
 <template>
   <div class="Error401">
-    <error-page
-      :error-title="errorTitle"
-      :error-message="errorMessage"
-      :error-info="errorInfo"
+    <error-page :error-title="errorTitle"
+                :error-message="errorMessage"
+                :error-info="errorInfo"
     />
   </div>
 </template>

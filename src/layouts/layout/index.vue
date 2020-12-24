@@ -1,56 +1,42 @@
 <template>
-  <a-layout
-    :class="['layout', device]"
-    class="aaaa"
-  >
+  <a-layout :class="['layout', device]" class="aaaa">
     <!-- SideMenu -->
-    <a-drawer
-      v-if="isMobile()"
-      placement="left"
-      :wrap-class-name="`drawer-sider ${navTheme}`"
-      :closable="false"
-      :visible="collapsed"
-      @close="drawerClose"
-    >
-      <side-menu
-        mode="inline"
-        :isDesktop="isDesktop()"
-        :fix-siderbar="fixSiderbar"
-        :menus="menus"
-        :theme="navTheme"
-        :collapsed="false"
-        :collapsible="true"
-        @menuSelect="menuSelect"
-      />
+    <a-drawer v-if="isMobile()"
+              placement="left"
+              :wrap-class-name="`drawer-sider ${navTheme}`"
+              :closable="false"
+              :visible="collapsed"
+              @close="drawerClose">
+      <side-menu mode="inline"
+                 :isDesktop="isDesktop()"
+                 :fix-siderbar="fixSiderbar"
+                 :menus="menus"
+                 :theme="navTheme"
+                 :collapsed="false"
+                 :collapsible="true"
+                 @menuSelect="menuSelect"/>
     </a-drawer>
 
-    <side-menu
-      v-else-if="isSideMenu()"
-      mode="inline"
-      :isDesktop="isDesktop()"
-      :fix-siderbar="fixSiderbar"
-      :menus="menus"
-      :theme="navTheme"
-      :collapsed="collapsed"
-      :collapsible="true"
-    />
-
-    <a-layout
-      :class="[layoutMode, `content-width-${contentWidth}`]"
-      :style="{paddingLeft: contentPaddingLeft, minHeight: '100vh'}"
-    >
+    <side-menu v-else-if="isSideMenu()"
+               mode="inline"
+               :isDesktop="isDesktop()"
+               :fix-siderbar="fixSiderbar"
+               :menus="menus"
+               :theme="navTheme"
+               :collapsed="collapsed"
+               :collapsible="true"/>
+    <a-layout :class="[layoutMode, `content-width-${contentWidth}`]"
+              :style="{paddingLeft: contentPaddingLeft, minHeight: '100vh'}">
       <!-- layout header -->
-      <layout-header
-        :avatar="avatar"
-        :mode="layoutMode"
-        :menus="menus"
-        :theme="navTheme"
-        :collapsed="collapsed"
-        :fixed-header="fixedHeader"
-        :sidebar-opened="sidebarOpened"
-        :device="device"
-        @toggle="toggle"
-      />
+      <layout-header :avatar="avatar"
+                     :mode="layoutMode"
+                     :menus="menus"
+                     :theme="navTheme"
+                     :collapsed="collapsed"
+                     :fixed-header="fixedHeader"
+                     :sidebar-opened="sidebarOpened"
+                     :device="device"
+                     @toggle="toggle"/>
 
       <!-- layout content -->
       <a-layout-content :style="{height: '100%', margin: '24px 24px 0', paddingTop: fixedHeader ? '64px' : '0'}">
